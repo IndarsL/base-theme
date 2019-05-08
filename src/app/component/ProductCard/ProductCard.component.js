@@ -16,6 +16,7 @@ import TextPlaceholder from 'Component/TextPlaceholder';
 import ProductPrice from 'Component/ProductPrice';
 import Image from 'Component/Image';
 import AddToCart from 'Component/AddToCart';
+import ProductReviewRating from 'Component/ProductReviewRating';
 import { ProductType, FilterType } from 'Type/ProductList';
 import './ProductCard.style';
 
@@ -96,6 +97,26 @@ class ProductCard extends Component {
         );
     }
 
+    renderReviewSummary(linkTo) {
+        const { product: { review_summary, url_key } } = this.props;
+        if (review_summary) {
+            if (review_summary.review_count) {
+                const reviewText = review_summary.review_count === 1 ? "Review" : "Reviews";
+
+                return (
+                    <div block="ProductCard" elem="ReviewSummary">
+                        <ProductReviewRating content={review_summary.rating_summary} />
+                        <Link to={ linkTo } tabIndex={ url_key ? '0' : '-1' }>
+                            <TextPlaceholder content={review_summary.review_count + ' ' + reviewText} length="short" />
+                        </Link>
+                    </div>
+                );
+            }
+        }
+
+        return null;
+    }
+
     render() {
         const {
             product: {
@@ -116,7 +137,8 @@ class ProductCard extends Component {
             ? {
                 pathname: `/product/${ url_key }`,
                 state: { product, variantIndex },
-                search: `?variant=${ variantIndex }`
+                search: `?variant=${ variantIndex }`,
+                reviews: ``
             }
             : undefined;
 
@@ -138,6 +160,7 @@ class ProductCard extends Component {
                     <h4><TextPlaceholder content={ name } /></h4>
                     { price && <ProductPrice price={ price } /> }
                 </TagName>
+                { this.renderReviewSummary(linkTo) }
                 <div block="ProductCard" elem="Actions">
                     { price
                         ? this.addOrConfigureProduct(variantIndex, linkTo)
