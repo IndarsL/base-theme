@@ -16,6 +16,7 @@ import TextPlaceholder from 'Component/TextPlaceholder';
 import ProductPrice from 'Component/ProductPrice';
 import Image from 'Component/Image';
 import AddToCart from 'Component/AddToCart';
+import ProductWishlistButton from 'Component/ProductWishlistButton';
 import ProductReviewRating from 'Component/ProductReviewRating';
 import { ProductType, FilterType } from 'Type/ProductList';
 import './ProductCard.style';
@@ -99,14 +100,16 @@ class ProductCard extends Component {
 
     renderReviewSummary(linkTo) {
         const { product: { review_summary, url_key } } = this.props;
+
         if (review_summary) {
             if (review_summary.review_count) {
+                const _linkTo = Object.assign({ hash: `#reviews` }, linkTo);
                 const reviewText = review_summary.review_count === 1 ? "Review" : "Reviews";
 
                 return (
                     <div block="ProductCard" elem="ReviewSummary">
                         <ProductReviewRating content={review_summary.rating_summary} />
-                        <Link to={ linkTo } tabIndex={ url_key ? '0' : '-1' }>
+                        <Link to={ _linkTo } tabIndex={ url_key ? '0' : '-1' }>
                             <TextPlaceholder content={review_summary.review_count + ' ' + reviewText} length="short" />
                         </Link>
                     </div>
@@ -137,8 +140,7 @@ class ProductCard extends Component {
             ? {
                 pathname: `/product/${ url_key }`,
                 state: { product, variantIndex },
-                search: `?variant=${ variantIndex }`,
-                reviews: ``
+                search: `?variant=${ variantIndex }`
             }
             : undefined;
 
@@ -164,6 +166,15 @@ class ProductCard extends Component {
                 <div block="ProductCard" elem="Actions">
                     { price
                         ? this.addOrConfigureProduct(variantIndex, linkTo)
+                        : <TextPlaceholder length="medium" />
+                    }
+                    { price
+                        ? (
+                            <ProductWishlistButton
+                              product={ product }
+                              fullWidth
+                            />
+                        )
                         : <TextPlaceholder length="medium" />
                     }
                 </div>

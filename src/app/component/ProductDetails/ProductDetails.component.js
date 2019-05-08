@@ -10,6 +10,7 @@
  */
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Html from 'Component/Html';
 import TextPlaceholder from 'Component/TextPlaceholder';
 import ProductReviewRating from 'Component/ProductReviewRating';
@@ -67,24 +68,42 @@ class ProductDetails extends Component {
     }
 
     renderReviewSummary() {
-        const { product: { review_summary }, product } = this.props;
-
+        const { product: { review_summary, url_key }, product, configurableVariantIndex} = this.props;
 
         if (product) {
             if (review_summary) {
+                const linkTo = url_key
+                    ? {
+                        pathname: `/product/${ url_key }`,
+                        state: { product, configurableVariantIndex },
+                        search: `?variant=${ configurableVariantIndex }`,
+                        hash: `#reviews`
+                    }
+                    : undefined;
+
                 if (review_summary.review_count) {
                     const reviewText = review_summary.review_count === 1 ? "Review" : "Reviews";
 
                     return (
                         <>
                             <ProductReviewRating content={review_summary.rating_summary}/>
-                            <TextPlaceholder content={review_summary.review_count + " " + reviewText} length="short"/>
+                            <Link
+                                to={ linkTo }
+                                tabIndex={ url_key ? '0' : '-1' }
+                            >
+                                <TextPlaceholder content={review_summary.review_count + " " + reviewText} length="short"/>
+                            </Link>
                         </>
                     );
                 }
 
                 return (
-                    <TextPlaceholder content="Be the first to review this product" length="short"/>
+                    <Link
+                        to={ linkTo }
+                        tabIndex={ url_key ? '0' : '-1' }
+                    >
+                        <TextPlaceholder content="Be the first to review this product" length="short"/>
+                    </Link>
                 );
             }
 
