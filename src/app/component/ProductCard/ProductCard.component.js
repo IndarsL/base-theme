@@ -108,9 +108,9 @@ class ProductCard extends Component {
 
                 return (
                     <div block="ProductCard" elem="ReviewSummary">
-                        <ProductReviewRating content={review_summary.rating_summary} />
+                        <ProductReviewRating summary={ review_summary.rating_summary } />
                         <Link to={ _linkTo } tabIndex={ url_key ? '0' : '-1' }>
-                            <TextPlaceholder content={review_summary.review_count + ' ' + reviewText} length="short" />
+                            <TextPlaceholder content={ review_summary.review_count + ' ' + reviewText } />
                         </Link>
                     </div>
                 );
