@@ -18,6 +18,7 @@ import MenuQuery from 'Query/Menu.query';
 import MyAccount from 'Query/MyAccount.query';
 import Wishlist from 'Query/Wishlist.query';
 import Cart from 'Query/Cart.query';
+import Review from 'Query/Review.query';
 
 export {
     CategoryQuery,
@@ -28,5 +29,6 @@ export {
     MenuQuery,
     MyAccount,
     Wishlist,
+    Review,
     Cart
 };
