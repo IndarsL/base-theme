@@ -103,14 +103,14 @@ class ProductCard extends Component {
 
         if (review_summary) {
             if (review_summary.review_count) {
-                const _linkTo = Object.assign({ hash: `#reviews` }, linkTo);
-                const reviewText = review_summary.review_count === 1 ? "Review" : "Reviews";
+                const _linkTo = Object.assign({ hash: '#reviews' }, linkTo);
+                const reviewText = review_summary.review_count === 1 ? 'Review' : 'Reviews';
 
                 return (
                     <div block="ProductCard" elem="ReviewSummary">
                         <ProductReviewRating summary={ review_summary.rating_summary } />
                         <Link to={ _linkTo } tabIndex={ url_key ? '0' : '-1' }>
-                            <TextPlaceholder content={ review_summary.review_count + ' ' + reviewText } />
+                            <TextPlaceholder content={ `${review_summary.review_count} ${reviewText}` } />
                         </Link>
                     </div>
                 );
