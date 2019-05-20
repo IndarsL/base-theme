@@ -42,8 +42,6 @@ class ProductDispatcher extends QueryDispatcher {
             RelatedProductsDispatcher.clearRelatedProducts(dispatch);
         }
 
-        this.getProductReviewsList(dispatch, product);
-
         return (items && items.length > 0)
             ? dispatch(updateProductDetails(product, filters))
             : dispatch(updateNoMatch(true));
@@ -113,16 +111,6 @@ class ProductDispatcher extends QueryDispatcher {
         )).then(
             () => dispatch(showNotification('success', 'You submitted your review for moderation.')) && true,
             error => dispatch(showNotification('error', 'Error submitting review!')) && console.log(error)
-        );
-    }
-
-    getProductReviewsList(dispatch, options) {
-        console.log(options);
-
-        return fetchQuery(Review.getProductReviewsQuery(
-        )).then(
-            ({ data }) => console.log(data),
-            error => dispatch(showNotification('error', 'Error fetching review data!')) && console.log(error)
         );
     }
 }
