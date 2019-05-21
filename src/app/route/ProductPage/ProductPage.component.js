@@ -37,7 +37,8 @@ class ProductPage extends Component {
     }
 
     componentDidMount() {
-        this.requestProduct();
+        const { isOnlyPlaceholder } = this.props;
+        if (!isOnlyPlaceholder) this.requestProduct();
         this.updateBreadcrumbs();
     }
 
@@ -261,14 +262,16 @@ ProductPage.propTypes = {
     updateBreadcrumbs: PropTypes.func.isRequired,
     clearGroupedProductQuantity: PropTypes.func.isRequired,
     product: ProductType.isRequired,
-    filters: PropTypes.arrayOf(PropTypes.shape)
+    filters: PropTypes.arrayOf(PropTypes.shape),
+    isOnlyPlaceholder: PropTypes.bool
 };
 
 ProductPage.defaultProps = {
     location: {
         state: {}
     },
-    filters: []
+    filters: [],
+    isOnlyPlaceholder: false
 };
 
 export default ProductPage;

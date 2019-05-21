@@ -18,6 +18,7 @@ import MenuQuery from 'Query/Menu.query';
 import MyAccount from 'Query/MyAccount.query';
 import Wishlist from 'Query/Wishlist.query';
 import Cart from 'Query/Cart.query';
+import UrlRewritesQuery from 'Query/UrlRewrites';
 import Review from 'Query/Review.query';
 
 export {
@@ -27,6 +28,7 @@ export {
     CmsBlockQuery,
     HomeSlider,
     MenuQuery,
+    UrlRewritesQuery,
     MyAccount,
     Wishlist,
     Review,
