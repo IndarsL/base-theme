@@ -108,6 +108,7 @@ class ProductDetails extends Component {
         return (
             <>
                 <TextPlaceholder length="short" />
+                <TextPlaceholder length="short" />
             </>
         );
     }
