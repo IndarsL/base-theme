@@ -9,7 +9,7 @@
  * @link https://github.com/scandipwa/base-theme
  */
 
-import { QueryDispatcher, fetchMutation, fetchQuery } from 'Util/Request';
+import { QueryDispatcher, fetchMutation } from 'Util/Request';
 import { ProductListQuery, Review } from 'Query';
 import { updateProductDetails, updateGroupedProductQuantity, clearGroupedProductQuantity } from 'Store/Product';
 import { updateNoMatch } from 'Store/NoMatch';
