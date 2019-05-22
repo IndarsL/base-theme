@@ -14,7 +14,6 @@ import PropTypes from 'prop-types';
 import ProductDetails from 'Component/ProductDetails';
 import ProductGallery from 'Component/ProductGallery';
 import ProductDescription from 'Component/ProductDescription';
-import ProductReviewForm from 'Component/ProductReviewForm';
 import ProductReviewList from 'Component/ProductReviewList';
 import ContentWrapper from 'Component/ContentWrapper';
 import ProductActions from 'Component/ProductActions';
@@ -231,10 +230,6 @@ class ProductPage extends Component {
                       areDetailsLoaded={ areDetailsLoaded }
                     />
                     <ProductReviewList
-                      product={ dataSource }
-                      areDetailsLoaded={ areDetailsLoaded }
-                    />
-                    <ProductReviewForm
                       product={ dataSource }
                       areDetailsLoaded={ areDetailsLoaded }
                     />
